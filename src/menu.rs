@@ -1,9 +1,24 @@
+use std::io::stdin;
+
+mod actions;
+
+#[derive(Debug)]
+pub struct Note {
+    pub id: i32,
+    pub title: String,
+    pub content: String,
+    pub created_at: String,
+}
+
 pub enum Menu {
     Add,
     Remove,
     List,
     Exit,
 }
+
+// local variable to store notes
+pub static mut NOTES: Vec<Note> = Vec::new();
 
 pub fn print() {
     println!("\x1B[2J\x1B[1;1H");
@@ -29,9 +44,11 @@ pub fn handle_input(input: &str) {
 
 fn handle_menu(menu: Menu) {
     match menu {
-        Menu::Add => println!("Add a note"),
-        Menu::Remove => println!("Remove a note"),
-        Menu::List => println!("List all notes"),
-        Menu::Exit => println!("Exit"),
+        Menu::Add => actions::add_note(),
+        Menu::Remove => actions::remove_note(),
+        Menu::List => actions::list_notes(),
+        Menu::Exit => actions::exit(),
     }
+    println!("Press Enter to continue...");
+    let _ = stdin().read_line(&mut String::new());
 }
