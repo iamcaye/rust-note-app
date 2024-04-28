@@ -24,7 +24,7 @@ pub fn add_note() {
 pub fn list_notes() {
     println!("List all notes");
     unsafe {
-        for note in &super::NOTES {
+        for note in super::NOTES.iter() {
             println!("{:?}", note);
         }
     }

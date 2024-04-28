@@ -18,7 +18,8 @@ pub enum Menu {
 }
 
 // local variable to store notes
-pub static mut NOTES: Vec<Note> = Vec::new();
+pub type Notes = Vec<Note>;
+pub static mut NOTES: Notes = Vec::new();
 
 pub fn print() {
     println!("\x1B[2J\x1B[1;1H");
