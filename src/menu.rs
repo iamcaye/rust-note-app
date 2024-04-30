@@ -15,6 +15,7 @@ pub enum Menu {
     Remove,
     List,
     Exit,
+    Invalid,
 }
 
 // local variable to store notes
@@ -36,10 +37,7 @@ pub fn handle_input(input: &str) {
         "2" => Menu::Remove,
         "3" => Menu::List,
         "4" => Menu::Exit,
-        _ => {
-            println!("Invalid input");
-            Menu::Exit
-        }
+        _ => Menu::Invalid,
     })
 }
 
@@ -49,6 +47,7 @@ fn handle_menu(menu: Menu) {
         Menu::Remove => actions::remove_note(),
         Menu::List => actions::list_notes(),
         Menu::Exit => actions::exit(),
+        Menu::Invalid => println!("Invalid text input"),
     }
     println!("Press Enter to continue...");
     let _ = stdin().read_line(&mut String::new());
